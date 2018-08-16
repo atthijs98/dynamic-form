@@ -1,0 +1,79 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+    <div class="container">
+        <form method="post" id="quiz" class="col s12">
+            <div class="input_fields_wrap">
+                <div class="input-field">
+                    <label for="question">Question</label>
+                    <input type="text" id="question" name="question[]">
+                </div>
+                <div class="input-field">
+                    <label for="answer">Right answer</label>
+                    <input type="text" id="answer" name="answer[]">
+                </div>
+                <div class="input-field">
+                    <label for="wrong1">Wrong answer</label>
+                    <input type="text" id="wrong1" name="wrong1[]">
+                </div>
+                <div class="input-field">
+                    <label for="wrong2">Wrong answer</label>
+                    <input type="text" id="wrong2" name="wrong2[]">
+                </div>
+                <div class="input-field">
+                    <label for="wrong3">Wrong answer</label>
+                    <input type="text" id="wrong3" name="wrong3[]">
+                </div>
+            </div>
+            <button class="add_field_button btn waves-effect waves-light">Meer vragen toevoegen</button><br><br>
+            <input type="submit" class="btn waves-effect waves-light" name="submit">
+        </form>
+    </div>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="materialize.min.js"></script>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            var max_fields      = 20; //maximum input boxes allowed
+            var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+            var add_button      = $(".add_field_button"); //Add button ID
+
+            var x = 1; //initlal text box count
+            $(add_button).click(function(e){ //on add input button click
+                e.preventDefault();
+                if(x < max_fields){ //max input box allowed
+                    x++; //text box increment
+                    $(wrapper).append('<br><div><br>' +
+                        '        <div class="input-field">\n' +
+                        '            <label for="question">Question</label>\n' +
+                        '            <input type="text" id="question" name="question[]">\n' +
+                        '        </div>\n' +
+                        '        <div class="input-field">\n' +
+                        '            <label for="answer">Right answer</label>\n' +
+                        '            <input type="text" id="answer" name="answer[]">\n' +
+                        '        </div>\n' +
+                        '        <div class="input-field">\n' +
+                        '            <label for="wrong1">wrong answer</label>\n' +
+                        '            <input type="text" id="wrong1" name="wrong1[]">\n' +
+                        '        </div>\n' +
+                        '        <div class="input-field">\n' +
+                        '            <label for="wrong2">wrong answer</label>\n' +
+                        '            <input type="text" id="wrong2" name="wrong2[]">\n' +
+                        '        </div>\n' +
+                        '        <div class="input-field">\n' +
+                        '            <label for="wrong3">wrong answer</label>\n' +
+                        '            <input type="text" id="wrong3" name="wrong3[]">\n' +
+                        '        </div><a href="#" class="remove_field">Remove</a></div>'); //add input box
+                }
+            });
+
+            $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                e.preventDefault(); $(this).parent('div').remove(); x--;
+            });
+            
+
+        });
+    </script>
+    </body>
+</html>
